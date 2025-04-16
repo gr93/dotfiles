@@ -9,9 +9,11 @@ alias python3=/opt/homebrew/bin/python3.10
 alias pip='python3 -m pip'
 alias pip3='python3 -m pip'
 
-export PATH=/Users/gopalr/dev/nvim-macos-arm64/bin:$PATH
-alias vi='nvim'
-alias vim='nvim'
+export PATH=/home/gopalr/dev:$PATH
+alias vi='nvim.appimage'
+alias vim='nvim.appimage'
 alias ls='ls -a --color=auto'
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

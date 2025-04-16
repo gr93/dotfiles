@@ -9,6 +9,14 @@ return require('packer').startup(function(use)
     'ibhagwan/fzf-lua',
     requires = { 'nvim-tree/nvim-web-devicons' } -- optional, for file icons
   }
+  use {
+    'rmagatti/auto-session',
+    config = function()
+      require("auto-session").setup {
+        suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/"},
+      }
+    end
+  }
 
 end)
 
