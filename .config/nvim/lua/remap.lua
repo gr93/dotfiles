@@ -7,3 +7,4 @@ vim.api.nvim_set_keymap('n', '<leader>l', ":lua require('fzf-lua').lines()<CR>",
 vim.api.nvim_set_keymap('n', '<leader>hd', ":lua require('gitsigns').diffthis()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>hs', ":lua require('gitsigns').stage_hunk()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>hr', ":lua require('gitsigns').reset_hunk()<CR>", { noremap = true, silent = true })
+-- test
