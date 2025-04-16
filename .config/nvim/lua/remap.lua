@@ -4,3 +4,6 @@ vim.api.nvim_set_keymap('n', '<leader>f', ":lua require('fzf-lua').files()<CR>",
 vim.api.nvim_set_keymap('n', '<leader>b', ":lua require('fzf-lua').buffers()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>g', ":lua require('fzf-lua').grep()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>l', ":lua require('fzf-lua').lines()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>hd', ":lua require('gitsigns').diffthis()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>hs', ":lua require('gitsigns').stage_hunk()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>hr', ":lua require('gitsigns').reset_hunk()<CR>", { noremap = true, silent = true })

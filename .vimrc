@@ -15,3 +15,4 @@ nnoremap <C-U> <C-U>zz
 
 set splitbelow
 set splitright
+
