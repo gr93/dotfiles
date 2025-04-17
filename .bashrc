@@ -1,3 +1,7 @@
+case $- in
+    *i*) ;;       # if the "$-" contains 'i', do nothing (interactive shell)
+      *) return;; # else, return (non-interactive shell, exit the script/function)
+esac
 
 PS1='\[\e[1;32m\]\u@\h \[\e[1;34m\]\w\[\e[0m\] \$ '
 export PATH=/Users/gopalr/Library/Python/3.9/bin:/usr/local/bin:/usr/local/sbin:~/bin:/usr/bin:$PATH
@@ -14,6 +18,6 @@ alias vi='nvim.appimage'
 alias vim='nvim.appimage'
 alias ls='ls -a --color=auto'
 export BASH_SILENCE_DEPRECATION_WARNING=1
-
+alias gsh='git status --show'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
