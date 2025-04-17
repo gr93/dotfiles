@@ -13,7 +13,7 @@ mkdir -p ~/.config
 mkdir -p ~/.local/share
 
 ln -sfn $DOTFILES/.config/nvim ~/.config/nvim
-ln -sfn $DOTFILES/.local/share/nvim ~/.local/share/nvim
+# ln -sfn $DOTFILES/.local/share/nvim ~/.local/share/nvim
 
 echo "Symlinks created!"
 
