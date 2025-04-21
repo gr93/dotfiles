@@ -36,6 +36,15 @@ return require('packer').startup(function(use)
       require('gitsigns').setup()
     end
   }
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    },
+    config = function()
+      require("nvim-tree").setup()
+    end
+  }
   if packer_bootstrap then
     require('packer').sync()
   end
