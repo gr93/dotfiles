@@ -16,8 +16,11 @@ alias pip3='python3 -m pip'
 export PATH=/home/gopalr/dev:$PATH
 alias vi='nvim.appimage'
 alias vim='nvim.appimage'
+alias nvim='nvim.appimage'
 alias ls='ls -a --color=auto'
 export BASH_SILENCE_DEPRECATION_WARNING=1
 alias gsh='git status --show'
+export PATH=/opt/vagrant/embedded/bin/:$PATH
+
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
