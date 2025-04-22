@@ -19,4 +19,10 @@ vim.api.nvim_set_keymap('n', '<leader>hd', ":lua require('gitsigns').diffthis()<
 vim.api.nvim_set_keymap('n', '<leader>hs', ":lua require('gitsigns').stage_hunk()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>hr', ":lua require('gitsigns').reset_hunk()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>nt', ":NvimTreeToggle<CR>", { noremap = true, silent = true })
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function()
+    require('osc52').copy_register('+')
+  end,
+})
 vim.keymap.set('n', '<Leader>w', '<C-6>')

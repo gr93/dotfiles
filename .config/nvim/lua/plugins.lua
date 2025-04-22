@@ -45,6 +45,16 @@ return require('packer').startup(function(use)
       require("nvim-tree").setup()
     end
   }
+  use {
+    'ojroques/nvim-osc52',
+    config = function()
+      require('osc52').setup {
+        max_length = 0,        -- No limit on selection size
+        silent = true,        -- Notify on successful copy
+        trim = false,          -- Don't trim the selection
+      }
+    end
+  }
   if packer_bootstrap then
     require('packer').sync()
   end
