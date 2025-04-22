@@ -50,8 +50,9 @@ return require('packer').startup(function(use)
     config = function()
       require('osc52').setup {
         max_length = 0,        -- No limit on selection size
-        silent = true,        -- Notify on successful copy
+        silent = false,        -- Notify on successful copy
         trim = false,          -- Don't trim the selection
+	tmux_passthrough = true
       }
     end
   }
