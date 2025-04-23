@@ -16,6 +16,9 @@ alias ls='ls -a --color=auto'
 export BASH_SILENCE_DEPRECATION_WARNING=1
 alias gsh='git status --show'
 export PATH=/opt/vagrant/embedded/bin/:$PATH
+export PATH=/home/gopalr/local/usr/bin:$PATH
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+eval "$(zoxide init bash)"
+
