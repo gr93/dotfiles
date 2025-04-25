@@ -9,9 +9,12 @@ ln -sf $DOTFILES/.bash_profile ~/.bash_profile
 ln -sf $DOTFILES/.tmux.conf ~/.tmux.conf
 ln -sf $DOTFILES/.vimrc ~/.vimrc
 
+[ -f "~/.config/nvim" ] && rm -f ~/.config/nvim
+[ -f "~/.local/share/nvim" ] && rm -f ~/.local/share/nvim
+
 # Symlink Neovim config directories
-mkdir -p ~/.config
-mkdir -p ~/.local/share
+mkdir -p ~/.config/nvim
+mkdir -p ~/.local/share/nvim
 
 ln -sfn $DOTFILES/.config/nvim ~/.config/nvim
 
