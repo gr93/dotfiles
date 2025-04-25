@@ -20,7 +20,17 @@ return require('packer').startup(function(use)
   -- fzf-lua plugin
   use {
     'ibhagwan/fzf-lua',
-    requires = { 'nvim-tree/nvim-web-devicons' } -- optional, for file icons
+    config = function()
+      require('fzf-lua').setup({
+        files = {
+          formatter = "path.filename_first"
+        },
+        grep = {
+          formatter = "path.filename_first"
+        },
+	defaults = { file_icons = false }
+      })
+    end
   }
   use {
     'rmagatti/auto-session',

@@ -9,9 +9,9 @@ export PATH=/opt/homebrew/bin/:$PATH
 alias ft='python3 /Users/gopalr/frametest.py'
 
 export PATH=/home/gopalr/dev:$PATH
-alias vi='nvim.appimage'
-alias vim='nvim.appimage'
-alias nvim='nvim.appimage'
+alias vi='nvim'
+alias vim='nvim'
+alias nvim='nvim'
 alias ls='ls -a --color=auto'
 export BASH_SILENCE_DEPRECATION_WARNING=1
 alias gsh='git status --show'
