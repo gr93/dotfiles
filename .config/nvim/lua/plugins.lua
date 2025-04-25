@@ -1,24 +1,23 @@
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
   end
-  return false
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
-
-vim.cmd [[packadd packer.nvim]]
-
-return require('packer').startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
-
-  -- fzf-lua plugin
-  use {
+-- Plugin setup
+require("lazy").setup({
+  {
     'ibhagwan/fzf-lua',
     config = function()
       require('fzf-lua').setup({
@@ -28,28 +27,31 @@ return require('packer').startup(function(use)
         grep = {
           formatter = "path.filename_first"
         },
-	defaults = { file_icons = false }
+        defaults = { file_icons = false }
       })
     end
-  }
-  use {
+  },
+
+  {
     'rmagatti/auto-session',
     config = function()
       require("auto-session").setup {
-        suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/"},
+        suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
       }
     end
-  }
-  use {
+  },
+
+  {
     'lewis6991/gitsigns.nvim',
     config = function()
       require('gitsigns').setup()
     end
-  }
-  use {
+  },
+
+  {
     'nvim-tree/nvim-tree.lua',
-    requires = {
-      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
     },
     config = function()
       require("nvim-tree").setup({
@@ -60,9 +62,9 @@ return require('packer').startup(function(use)
             ignore_list = {},
           }
         },
-	renderer = {
-	  icons = {
-	    show = {
+        renderer = {
+          icons = {
+            show = {
               file = false,
               folder = false,
               folder_arrow = false,
@@ -72,25 +74,21 @@ return require('packer').startup(function(use)
               diagnostics = false,
               bookmarks = false,
             }
-	  }
-	}
+          }
+        }
       })
     end
-  }
-  use {
+  },
+
+  {
     'ojroques/nvim-osc52',
     config = function()
       require('osc52').setup {
-        max_length = 0,        -- No limit on selection size
-        silent = false,        -- Notify on successful copy
-        trim = false,          -- Don't trim the selection
-	tmux_passthrough = true
+        max_length = 0,
+        silent = false,
+        trim = false,
+        tmux_passthrough = true
       }
     end
-  }
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-end)
-
-
+  },
+})
