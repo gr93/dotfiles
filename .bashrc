@@ -22,3 +22,4 @@ export PATH=/home/gopalr/local/usr/bin:$PATH
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 eval "$(zoxide init bash)"
 
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
