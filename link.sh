@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Path to your dotfiles repo
-DOTFILES=~/dotfiles
+DOTFILES=~/dev/dotfiles
 
 # Symlink dotfiles to home directory
 ln -sf $DOTFILES/.bashrc ~/.bashrc
