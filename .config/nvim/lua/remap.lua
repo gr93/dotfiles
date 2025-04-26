@@ -8,6 +8,8 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 -- vim.api.nvim_set_keymap('n', '<leader>hs', ":lua require('gitsigns').stage_hunk()<CR>", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('n', '<leader>hr', ":lua require('gitsigns').reset_hunk()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>nt', ":NvimTreeToggle<CR>", { noremap = true, silent = true })
+vim.keymap.set("v", ">", ">gv")
+vim.keymap.set("v", "<", "<gv")
 
 function copy()
   if vim.v.event.operator == 'y' then
