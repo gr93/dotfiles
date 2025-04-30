@@ -23,3 +23,13 @@ export PATH=/home/gopalr/local/usr/bin:$PATH
 eval "$(zoxide init bash)"
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+function pushdotfiles() {
+  current_dir=$(pwd)
+  cd ~/dev/dotfiles
+  git add .
+  git commit -m "Update"
+  git push
+  cd $current_dir
+}
+
