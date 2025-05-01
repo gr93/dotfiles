@@ -3,10 +3,14 @@ case $- in
       *) return;; # else, return (non-interactive shell, exit the script/function)
 esac
 
+HISTSIZE= 
+HISTFILESIZE=
+
 PS1='\[\e[1;32m\]\u@\h \[\e[1;34m\]\w\[\e[0m\] \$ '
 export PATH=/Users/gopalr/Library/Python/3.9/bin:/usr/local/bin:/usr/local/sbin:~/bin:/usr/bin:$PATH
 export PATH=/opt/homebrew/bin/:$PATH
 alias ft='python3 /Users/gopalr/frametest.py'
+alias history="history | tr -s ' ' | cut -d' ' -f3- | vim"
 
 export PATH=/home/gopalr/dev:$PATH
 alias vi='nvim'
@@ -33,3 +37,4 @@ function pushdotfiles() {
   cd $current_dir
 }
 
+source ~/ampcs.sh

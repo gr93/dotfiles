@@ -8,6 +8,7 @@ ln -sf $DOTFILES/.bashrc ~/.bashrc
 ln -sf $DOTFILES/.bash_profile ~/.bash_profile
 ln -sf $DOTFILES/.tmux.conf ~/.tmux.conf
 ln -sf $DOTFILES/.vimrc ~/.vimrc
+ln -sf $DOTFILES/ampcs.sh ~/ampcs.sh
 
 [ -f "~/.config/nvim" ] && rm -f ~/.config/nvim
 [ -f "~/.local/share/nvim" ] && rm -f ~/.local/share/nvim
