@@ -10,14 +10,16 @@ ln -sf $DOTFILES/.tmux.conf ~/.tmux.conf
 ln -sf $DOTFILES/.vimrc ~/.vimrc
 ln -sf $DOTFILES/ampcs.sh ~/ampcs.sh
 
-[ -f "~/.config/nvim" ] && rm -f ~/.config/nvim
-[ -f "~/.local/share/nvim" ] && rm -f ~/.local/share/nvim
+# Remove existing Neovim config if it exists (file, dir, or symlink)
+[ -e "$HOME/.config/nvim" ] && rm -rf "$HOME/.config/nvim"
+[ -e "$HOME/.local/share/nvim" ] && rm -rf "$HOME/.local/share/nvim"
 
-# Symlink Neovim config directories
-mkdir -p ~/.config/nvim
-mkdir -p ~/.local/share/nvim
+# Recreate necessary parent directories (but not the actual nvim dir)
+mkdir -p ~/.config
+mkdir -p ~/.local/share
 
-ln -sfn $DOTFILES/.config/nvim ~/.config/nvim
+# Create symlink
+ln -sfn "$DOTFILES/.config/nvim" "$HOME/.config/nvim"
 
 echo "Symlinks created!"
 
