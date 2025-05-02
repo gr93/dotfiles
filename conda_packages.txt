@@ -3,4 +3,5 @@ zoxide
 ripgrep
 fzf
 lazygit
-
+neovim
+bat
