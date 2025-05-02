@@ -1,0 +1,6 @@
+# List of tools to install
+zoxide
+ripgrep
+fzf
+lazygit
+
