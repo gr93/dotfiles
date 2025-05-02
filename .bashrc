@@ -24,6 +24,7 @@ export PATH=/home/gopalr/local/usr/bin:$PATH
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/ampcs.sh ] && source ~/ampcs.sh
 eval "$(zoxide init bash)"
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
