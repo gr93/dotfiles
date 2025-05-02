@@ -39,3 +39,4 @@ function pushdotfiles() {
 }
 
 source ~/ampcs.sh
+source "/home/gopalr/miniconda3/etc/profile.d/conda.sh"
