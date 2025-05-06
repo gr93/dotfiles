@@ -27,7 +27,7 @@ export PATH=/home/gopalr/local/usr/bin:$PATH
 [ -f ~/ampcs.sh ] && source ~/ampcs.sh
 eval "$(zoxide init bash)"
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+[ -f /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 function pushdotfiles() {
   current_dir=$(pwd)
