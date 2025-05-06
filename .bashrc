@@ -42,8 +42,8 @@ source ~/ampcs.sh
 
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'micromamba shell init' !!
-export MAMBA_EXE='~/.local/bin/micromamba';
-export MAMBA_ROOT_PREFIX='y';
+export MAMBA_EXE='/home/gopalr/.local/bin/micromamba';
+export MAMBA_ROOT_PREFIX='/home/gopalr/micromamba';
 __mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__mamba_setup"
