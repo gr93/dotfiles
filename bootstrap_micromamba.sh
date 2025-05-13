@@ -4,7 +4,7 @@ set -euo pipefail
 
 # Set where micromamba should live
 export MAMBA_ROOT_PREFIX="$HOME/micromamba"
-MICROMAMBA_BIN="$MAMBA_ROOT_PREFIX/bin/micromamba"
+MICROMAMBA_BIN="$HOME/.local/bin/micromamba"
 
 # Install micromamba if it's not present
 if [ ! -f "$MICROMAMBA_BIN" ]; then
@@ -20,7 +20,7 @@ eval "$("$MICROMAMBA_BIN" shell hook -s posix)"
 
 # Create or update the "tools" environment
 echo "Creating/updating 'tools' environment..."
-micromamba create -y -n tools lazygit bat ripgrep fzf zoxide neovim htop
+micromamba create -y -n tools lazygit bat ripgrep fzf zoxide nvim htop
 
 echo "Done! Activate it with: micromamba activate tools"
 
