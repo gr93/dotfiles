@@ -52,5 +52,6 @@ else
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
+micromamba activate tools
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
