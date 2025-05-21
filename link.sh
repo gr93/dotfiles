@@ -8,6 +8,7 @@ ln -sf $DOTFILES/.bashrc ~/.bashrc
 ln -sf $DOTFILES/.bash_profile ~/.bash_profile
 ln -sf $DOTFILES/.tmux.conf ~/.tmux.conf
 ln -sf $DOTFILES/.vimrc ~/.vimrc
+ln -sf $DOTFILES/.inputrc ~/.inputrc
 ln -sf $DOTFILES/ampcs.sh ~/ampcs.sh
 
 # Remove existing Neovim config if it exists (file, dir, or symlink)
