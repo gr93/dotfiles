@@ -53,5 +53,8 @@ fi
 unset __mamba_setup
 # <<< mamba initialize <<<
 micromamba activate tools
+if command -v bat &> /dev/null; then
+  alias cat="bat"
+fi
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
