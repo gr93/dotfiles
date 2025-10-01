@@ -24,3 +24,8 @@ vim.api.nvim_create_autocmd("TextYankPost", { callback = copy })
 vim.keymap.set("n", "<Leader>w", "<C-6>")
 
 vim.keymap.set("n", "<C-s>", ":Oil<CR>")
+
+-- Yank permalink (normal: line, visual: range)
+vim.keymap.set({ "n", "x" }, "<leader>gy", function()
+	require("gh-permalink").yank()
+end, { desc = "Yank GitHub permalink to clipboard" })
