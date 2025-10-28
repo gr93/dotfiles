@@ -1,60 +1,99 @@
+# =========================================================
+# Interactive shell guard
+# =========================================================
 case $- in
-    *i*) ;;       # if the "$-" contains 'i', do nothing (interactive shell)
-      *) return;; # else, return (non-interactive shell, exit the script/function)
+  *i*) ;;       # interactive shell
+  *) return ;;  # non-interactive shell
 esac
 
-HISTSIZE= 
-HISTFILESIZE=
+# =========================================================
+# History
+# =========================================================
+# History configuration
+export HISTSIZE=-1
+export HISTFILESIZE=-1
+shopt -s histappend
 
+# Save and reload history after each command
+PROMPT_COMMAND='history -a; history -n; history -r;'
+
+# =========================================================
+# Prompt
+# =========================================================
 PS1='\[\e[1;32m\]\u@\h \[\e[1;34m\]\w\[\e[0m\] \$ '
-export PATH=/Users/gopalr/Library/Python/3.9/bin:/usr/local/bin:/usr/local/sbin:~/bin:/usr/bin:$PATH
-export PATH=/opt/homebrew/bin/:$PATH
-alias ft='python3 /Users/gopalr/frametest.py'
-alias history="vim $HISTFILE"
 
-export PATH=/home/gopalr/dev:$PATH
-alias vi='nvim'
+# =========================================================
+# PATH setup
+# =========================================================
+export PATH="/Users/gopalr/Library/Python/3.9/bin:/usr/local/bin:/usr/local/sbin:~/bin:/usr/bin"
+export PATH="/opt/homebrew/bin:/opt/vagrant/embedded/bin:/home/gopalr/local/usr/bin:/home/gopalr/dev:$PATH"
+
+# =========================================================
+# Aliases
+# =========================================================
 alias vim='nvim'
-#alias nvim='nvim'
 alias ls='ls -a --color=auto'
+alias lg='lazygit'
+alias ft='python3 /Users/gopalr/frametest.py'
+alias bat="bat -p"
+if command -v bat &>/dev/null; then
+  alias cat="bat"
+fi
+
+# =========================================================
+# Environment tweaks
+# =========================================================
 export BASH_SILENCE_DEPRECATION_WARNING=1
-alias gsh='git status --show'
-export PATH=/opt/vagrant/embedded/bin/:$PATH
-export PATH=/home/gopalr/local/usr/bin:$PATH
+export CLICOLOR=1
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+export INPUTRC="$HOME/.inputrc"
 
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -f ~/ampcs.sh ] && source ~/ampcs.sh
-eval "$(zoxide init bash)"
-
-[ -f /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
+# =========================================================
+# Dotfiles helper
+# =========================================================
 function pushdotfiles() {
+  local current_dir
   current_dir=$(pwd)
-  cd ~/dev/dotfiles
+  cd ~/dev/dotfiles || return
   git add .
   git commit -m "Update"
   git push
-  cd $current_dir
+  cd "$current_dir" || return
 }
 
-source ~/ampcs.sh
+# =========================================================
+# Optional sources
+# =========================================================
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# >>> mamba initialize >>>
-# !! Contents within this block are managed by 'micromamba shell init' !!
-export MAMBA_EXE='/home/gopalr/.local/bin/micromamba';
-export MAMBA_ROOT_PREFIX='/home/gopalr/micromamba';
-__mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+
+# =========================================================
+# Homebrew (Linuxbrew)
+# =========================================================
+if [ -f /home/linuxbrew/.linuxbrew/bin/brew ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+# =========================================================
+# Micromamba
+# =========================================================
+export MAMBA_EXE='/home/gopalr/.local/bin/micromamba'
+export MAMBA_ROOT_PREFIX='/home/gopalr/micromamba'
+
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2>/dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__mamba_setup"
+  eval "$__mamba_setup"
 else
-    alias micromamba="$MAMBA_EXE"  # Fallback on help from micromamba activate
+  alias micromamba="$MAMBA_EXE"  # fallback
 fi
 unset __mamba_setup
-# <<< mamba initialize <<<
+
 micromamba activate tools
-if command -v bat &> /dev/null; then
-  alias cat="bat"
+
+# =========================================================
+# zoxide
+# =========================================================
+if command -v zoxide &>/dev/null; then
+  eval "$(zoxide init bash)"
 fi
-export CLICOLOR=1
-export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+
