@@ -59,12 +59,22 @@ require("lazy").setup({ import = "plugins" })
 require("remap")
 LineNumberColors()
 
--- Enable LSP servers
+-- Enable LSP servers and set config
 local lsp_configs = {}
 for _, f in pairs(vim.api.nvim_get_runtime_file('lsp/*.lua', true)) do
   table.insert(lsp_configs, vim.fn.fnamemodify(f, ':t:r'))
 end
 vim.lsp.enable(lsp_configs)
+vim.diagnostic.config({ virtual_text = true })
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if client:supports_method('textDocument/completion') then
+      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+    end
+  end,
+})
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 -- vim: ts=2 sts=2 sw=2 et
 
