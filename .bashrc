@@ -77,18 +77,21 @@ fi
 # =========================================================
 # Micromamba
 # =========================================================
-export MAMBA_EXE='/home/gopalr/.local/bin/micromamba'
-export MAMBA_ROOT_PREFIX='/home/gopalr/micromamba'
+export MAMBA_EXE="$HOME/.local/bin/micromamba"
+export MAMBA_ROOT_PREFIX="$HOME/micromamba"
 
-__mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2>/dev/null)"
-if [ $? -eq 0 ]; then
-  eval "$__mamba_setup"
-else
-  alias micromamba="$MAMBA_EXE"  # fallback
+# Only proceed if MAMBA_EXE exists
+if [ -x "$MAMBA_EXE" ]; then
+    __mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2>/dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__mamba_setup"
+    else
+        alias micromamba="$MAMBA_EXE"  # fallback
+    fi
+    unset __mamba_setup
+
+    micromamba activate tools
 fi
-unset __mamba_setup
-
-micromamba activate tools
 
 # =========================================================
 # zoxide

@@ -22,6 +22,7 @@ end
 vim.api.nvim_create_autocmd("TextYankPost", { callback = copy })
 
 vim.keymap.set("n", "<Leader>w", "<C-6>")
+vim.keymap.set("n", "<Leader>ya", "ggVGy")
 
 vim.keymap.set("n", "<C-s>", ":Oil<CR>")
 
