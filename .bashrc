@@ -38,6 +38,7 @@ alias bat='bat -p'
 if command -v bat &>/dev/null; then
   alias cat='bat'
 fi
+alias g++='g++ -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion'
 
 # =========================================================
 # Environment tweaks
