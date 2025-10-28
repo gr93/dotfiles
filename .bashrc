@@ -9,12 +9,9 @@ esac
 # =========================================================
 # History
 # =========================================================
-# History configuration
 export HISTSIZE=-1
 export HISTFILESIZE=-1
 shopt -s histappend
-
-# Save and reload history after each command
 PROMPT_COMMAND='history -a; history -n; history -r;'
 
 # =========================================================
@@ -25,8 +22,10 @@ PS1='\[\e[1;32m\]\u@\h \[\e[1;34m\]\w\[\e[0m\] \$ '
 # =========================================================
 # PATH setup
 # =========================================================
-export PATH="/Users/gopalr/Library/Python/3.9/bin:/usr/local/bin:/usr/local/sbin:~/bin:/usr/bin"
-export PATH="/opt/homebrew/bin:/opt/vagrant/embedded/bin:/home/gopalr/local/usr/bin:/home/gopalr/dev:$PATH"
+# Prepend custom bins first
+export PATH="$HOME/dev:$HOME/local/usr/bin:/opt/homebrew/bin:/opt/vagrant/embedded/bin:$PATH"
+# Append standard system bins to ensure commands like ls/cat exist
+export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin"
 
 # =========================================================
 # Aliases
@@ -34,10 +33,10 @@ export PATH="/opt/homebrew/bin:/opt/vagrant/embedded/bin:/home/gopalr/local/usr/
 alias vim='nvim'
 alias ls='ls -a --color=auto'
 alias lg='lazygit'
-alias ft='python3 /Users/gopalr/frametest.py'
-alias bat="bat -p"
+alias ft='python3 $HOME/frametest.py'
+alias bat='bat -p'
 if command -v bat &>/dev/null; then
-  alias cat="bat"
+  alias cat='bat'
 fi
 
 # =========================================================
@@ -51,10 +50,10 @@ export INPUTRC="$HOME/.inputrc"
 # =========================================================
 # Dotfiles helper
 # =========================================================
-function pushdotfiles() {
+pushdotfiles() {
   local current_dir
   current_dir=$(pwd)
-  cd ~/dev/dotfiles || return
+  cd "$HOME/dev/dotfiles" || return
   git add .
   git commit -m "Update"
   git push
@@ -64,8 +63,7 @@ function pushdotfiles() {
 # =========================================================
 # Optional sources
 # =========================================================
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
+[ -f "$HOME/.fzf.bash" ] && source "$HOME/.fzf.bash"
 
 # =========================================================
 # Homebrew (Linuxbrew)
@@ -80,7 +78,6 @@ fi
 export MAMBA_EXE="$HOME/.local/bin/micromamba"
 export MAMBA_ROOT_PREFIX="$HOME/micromamba"
 
-# Only proceed if MAMBA_EXE exists
 if [ -x "$MAMBA_EXE" ]; then
     __mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2>/dev/null)"
     if [ $? -eq 0 ]; then
@@ -91,12 +88,15 @@ if [ -x "$MAMBA_EXE" ]; then
     unset __mamba_setup
 
     micromamba activate tools
+
+    # Ensure system binaries still in PATH after micromamba
+    export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin"
 fi
 
 # =========================================================
 # zoxide
 # =========================================================
 if command -v zoxide &>/dev/null; then
-  eval "$(zoxide init bash)"
+    eval "$(zoxide init bash)"
 fi
 
