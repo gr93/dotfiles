@@ -9,8 +9,8 @@ esac
 # =========================================================
 # History
 # =========================================================
-export HISTSIZE=-1
-export HISTFILESIZE=-1
+export HISTSIZE=
+export HISTFILESIZE=
 shopt -s histappend
 PROMPT_COMMAND='history -a; history -n; history -r;'
 
@@ -38,7 +38,7 @@ alias bat='bat -p'
 if command -v bat &>/dev/null; then
   alias cat='bat'
 fi
-alias g++='g++ -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion'
+alias g++='g++ -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -std=c++17'
 
 # =========================================================
 # Environment tweaks
